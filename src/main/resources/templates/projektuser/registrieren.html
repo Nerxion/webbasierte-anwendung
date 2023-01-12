@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{registeruser.titel}"></title>
+        <link rel="stylesheet" type="text/css" href="/benutzerprofil/benutzerprofil-style.css">
+    </head>
+    <body>
+        <a th:href="@{?sprache=de}">DE</a>
+        <a th:href="@{?sprache=en}">EN</a>
+        <a th:href="@{?sprache=nl}">NL</a>
+
+        <form th:action="@{/registrieren}" th:method="POST" th:object="${projektuser}">
+
+            <h1 th:text="#{registeruser.ihredaten}"></h1>
+
+            <label for="username" th:text="#{registeruser.username}">Username</label><br>
+                <input type="text" name="username" id="username" th:field="*{username}" th:errorclass="fehler"><br>
+                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+            
+            <label for="password" th:text="#{registeruser.password}">Username</label><br>
+                <input type="password" name="password" id="password" th:field="*{password}" th:errorclass="fehler"><br>
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+            
+            <input type="submit" name="speichern" id="speichern" th:value="#{registeruser.speichern}"/>
+        </form>
+        <form th:action="@{/benutzerprofil}" th:method="GET">
+            <input type="submit" name="" id="" th:value="#{registeruser.abbrechen}">
+        </form>
+    </body>
+</html>

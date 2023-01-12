@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{profilbearbeiten.titel}"></title>
+        <link rel="stylesheet" type="text/css" href="/benutzerprofil/benutzerprofil-style.css">
+    </head>
+    <body>
+        <a th:href="@{?sprache=de}">DE</a>
+        <a th:href="@{?sprache=en}">EN</a>
+        <a th:href="@{?sprache=nl}">NL</a>
+        
+        <form th:action="@{/benutzerprofil/bearbeiten}" th:method="POST" th:object="${profil}">
+
+            <h1 th:text="#{profilbearbeiten.titel}"></h1>
+
+            <label for="name" th:text="#{profil.name}">Name</label><br>
+                <input type="text" name="name" id="name" th:field="*{name}" th:errorclass="fehler"><br>
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+            <label for="geburtsdatum" th:text="#{profil.geburtsdatum}">Geburtsdatum</label><br>
+                <input type="date" name="geburtsdatum" id="geburtsdatum" th:field="*{geburtsdatum}" th:errorclass="fehler"><br>
+                <div th:if="${#fields.hasErrors('geburtsdatum')}" th:errors="*{geburtsdatum}"></div>
+
+            <label for="adresse" th:text="#{profil.adresse}">Adresse</label><br>
+                <input type="text" name="adresse" id="adresse" th:field="*{adresse}" th:errorclass="fehler"><br>
+                <div th:if="${#fields.hasErrors('adresse')}" th:errors="*{adresse}"></div>
+
+            <label for="email" th:text="#{profil.email}">Email</label><br>
+                <input type="text" name="email" id="email" th:field="*{email}" th:errorclass="fehler"><br>
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+
+            <label for="lieblingsfarbe" th:text="#{profil.lieblingsfarbe}">Lieblingsfarbe</label><br>
+                <input type="color" name="lieblingsfarbe" id="lieblingsfarbe" th:field="*{lieblingsfarbe}" th:errorclass="fehler"><br>
+                <div th:if="${#fields.hasErrors('lieblingsfarbe')}" th:errors="*{lieblingsfarbe}"></div>
+
+            <label for="interessen" th:text="#{profil.interessen}">Interessen (durch Komma getrennt)</label><br>
+                <input type="text" name="interessen" id="interessen" th:field="*{interessen}" th:errorclass="fehler"><br>
+                <div th:if="${#fields.hasErrors('interessen')}" th:errors="*{interessen}"></div>
+                
+            <input type="submit" name="speichern" id="speichern" th:value="#{profil.speichern}"/>
+        </form>
+        <form th:action="@{/benutzerprofil}" th:method="GET">
+            <input type="submit" name="" id="" th:value="#{profil.abbrechen}">
+        </form>
+    </body>
+</html>

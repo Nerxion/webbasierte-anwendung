@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{angebot.editor.titel}"></title>
+        <link rel="stylesheet" type="text/css" href="/benutzerprofil/benutzerprofil-style.css">
+    </head>
+    <body>
+        <a th:href="@{?sprache=de}">DE</a>
+        <a th:href="@{?sprache=en}">EN</a>
+        <a th:href="@{?sprache=nl}">NL</a>
+        
+        <form th:action="@{/benutzerprofil/angebot}" th:method="POST" th:object="${angebot}">
+
+            <h1 th:text="#{angebot.editor.titel}"></h1>
+
+            <label for="beschreibung" th:text="#{angebot.editor.beschreibung}">Beschreibung</label><br>
+                <input type="text" name="beschreibung" id="beschreibung" th:field="*{beschreibung}" th:errorclass="fehler"><br>
+                <div th:if="${#fields.hasErrors('beschreibung')}" th:errors="*{beschreibung}"></div>
+
+            <label for="mindestpreis" th:text="#{angebot.editor.mindestpreis}">Mindestpreis</label><br>
+                <input type="text" name="mindestpreis" id="mindestpreis" th:field="*{mindestpreis}" th:errorclass="fehler"><br>
+                <div th:if="${#fields.hasErrors('mindestpreis')}" th:errors="*{mindestpreis}"></div>
+
+            <label for="ablaufzeitpunkt" th:text="#{angebot.editor.ablaufzeitpunkt}">Ablaufzeitpunkt</label><br>
+                <input type="datetime-local" name="ablaufzeitpunkt" id="ablaufzeitpunkt" th:field="*{ablaufzeitpunkt}" th:errorclass="fehler"><br>
+                <div th:if="${#fields.hasErrors('ablaufzeitpunkt')}" th:errors="*{ablaufzeitpunkt}"></div>
+
+            <label for="abholort" th:text="#{angebot.editor.abholort}">Abholort</label><br>
+                <input type="text" name="abholort" id="abholort" th:field="*{abholort}" th:errorclass="fehler"><br>
+                <div th:if="${#fields.hasErrors('abholort')}" th:errors="*{abholort}"></div>
+
+            <input type="submit" name="speichern" id="speichern" th:value="#{angebot.editor.speichern}"/>
+        </form>
+    </body>
+</html>
